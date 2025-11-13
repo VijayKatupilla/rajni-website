@@ -40,73 +40,40 @@ export default function Navbar() {
           maxWidth: "1250px",
           margin: "0 auto",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-between",
-          padding: "4px 10px",
+          justifyContent: "center",
+          padding: "8px 10px",
           color: "white",
-          flexWrap: "nowrap",
-          overflowX: "auto",
-          whiteSpace: "nowrap",
+          textAlign: "center",
         }}
       >
-        {/* LEFT LINKS */}
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            fontSize: "clamp(12px, 1.7vw, 15px)",
-            flexShrink: 0,
-          }}
-        >
-          {["home", "menu", "events"].map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              style={{
-                color: active === section ? "#FFD700" : "white",
-                textDecoration: "none",
-                fontWeight: 500,
-              }}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </a>
-          ))}
-        </div>
-
-        {/* CENTER LOGO */}
-        <div
-          style={{
-            flexShrink: 0,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "0 6px",
-          }}
-        >
+        {/* Centered Logo */}
+        <div style={{ marginBottom: "6px" }}>
           <Link href="#home">
             <img
               src="/logo1.png"
               alt="Rajni Logo"
               style={{
-                width: "clamp(75px, 13vw, 120px)",
+                width: "clamp(110px, 20vw, 180px)", // bigger logo scaling
                 height: "auto",
-                display: "block",
               }}
             />
           </Link>
         </div>
 
-        {/* RIGHT LINKS */}
+        {/* Navigation Buttons (Below Logo) */}
         <div
           style={{
             display: "flex",
-            gap: "12px",
-            fontSize: "clamp(12px, 1.7vw, 15px)",
-            flexShrink: 0,
-            alignItems: "center",
+            gap: "18px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            fontSize: "clamp(12px, 1.6vw, 16px)",
+            paddingBottom: "4px",
           }}
         >
-          {["catering", "gallery"].map((section) => (
+          {["home", "menu", "events", "catering", "gallery"].map((section) => (
             <a
               key={section}
               href={`#${section}`}
@@ -114,6 +81,7 @@ export default function Navbar() {
                 color: active === section ? "#FFD700" : "white",
                 textDecoration: "none",
                 fontWeight: 500,
+                transition: "color 0.3s ease",
               }}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -125,7 +93,7 @@ export default function Navbar() {
             style={{
               backgroundColor: "#FFD700",
               color: "#000",
-              padding: "3px 10px",
+              padding: "4px 10px",
               borderRadius: "4px",
               fontWeight: 600,
               fontSize: "clamp(11px, 1.5vw, 14px)",
