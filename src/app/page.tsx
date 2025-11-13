@@ -1,3 +1,6 @@
+import GoogleReviews from "../components/GoogleReviews";
+import Footer from "../components/Footer";
+
 export default function HomePage() {
   const sections = [
     { id: "home", title: "Rajni Indian Cuisine", text: "Authentic Indian flavors in Madison, Wisconsin." },
@@ -5,7 +8,11 @@ export default function HomePage() {
     { id: "events", title: "Events & Specials", text: "Join us for buffets, live music, and festive gatherings." },
     { id: "catering", title: "Catering Services", text: "Perfect for weddings, corporate events, and celebrations." },
     { id: "gallery", title: "Gallery", text: "A glimpse of our delicious dishes and inviting atmosphere." },
-    { id: "contact", title: "Contact Us", text: "429 Commerce Drive, Madison, WI | (608) 123-4567 | info@rajnimadison.com" },
+    {
+      id: "contact",
+      title: "Contact Us",
+      text: "We’d love to hear from you! Reach out for reservations, catering, or special events.",
+    }, // ✅ Shortened text — no address duplication
   ];
 
   return (
@@ -30,7 +37,7 @@ export default function HomePage() {
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            backdropFilter: "blur(6px) brightness(0.8)", // <-- blur each section
+            backdropFilter: "blur(6px) brightness(0.8)", // blur each section
             backgroundColor: "rgba(0,0,0,0.3)",
             padding: "60px 20px",
           }}
@@ -50,6 +57,10 @@ export default function HomePage() {
           </p>
         </section>
       ))}
+
+      {/* ✅ Google Reviews + Footer */}
+      
+      <GoogleReviews />
     </div>
   );
 }
