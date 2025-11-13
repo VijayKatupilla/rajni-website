@@ -10,7 +10,6 @@ export default function Navbar() {
     const handleScroll = () => {
       const sections = ["home", "menu", "events", "catering", "gallery", "contact"];
       const scrollPos = window.scrollY + 120;
-
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPos) {
@@ -38,25 +37,25 @@ export default function Navbar() {
     >
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1250px",
           margin: "0 auto",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "6px 12px",
+          padding: "4px 8px",
           color: "white",
-          flexWrap: "wrap",
+          flexWrap: "nowrap",
+          overflowX: "auto", // ensures no wrap; horizontal scroll if too tight
+          whiteSpace: "nowrap",
         }}
       >
-        {/* LEFT LINKS */}
+        {/* Left Links */}
         <div
           style={{
             display: "flex",
-            gap: "16px",
-            flexShrink: 1,
-            flexWrap: "wrap",
-            justifyContent: "center",
-            fontSize: "clamp(12px, 2vw, 16px)", // Auto-scale for smaller screens
+            gap: "10px",
+            fontSize: "clamp(11px, 1.6vw, 14px)",
+            flexShrink: 0,
           }}
         >
           {["home", "menu", "events"].map((section) => (
@@ -67,7 +66,6 @@ export default function Navbar() {
                 color: active === section ? "#FFD700" : "white",
                 textDecoration: "none",
                 fontWeight: 500,
-                transition: "color 0.3s ease",
               }}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -75,14 +73,14 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CENTER LOGO */}
+        {/* Center Logo */}
         <div
           style={{
             flexShrink: 0,
-            textAlign: "center",
-            flexGrow: 1,
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
+            margin: "0 6px",
           }}
         >
           <Link href="#home">
@@ -90,7 +88,7 @@ export default function Navbar() {
               src="/logo1.png"
               alt="Rajni Logo"
               style={{
-                width: "clamp(80px, 14vw, 130px)", // dynamically resize logo
+                width: "clamp(70px, 12vw, 120px)",
                 height: "auto",
                 display: "block",
               }}
@@ -98,15 +96,13 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* RIGHT LINKS */}
+        {/* Right Links */}
         <div
           style={{
             display: "flex",
-            gap: "16px",
-            flexShrink: 1,
-            flexWrap: "wrap",
-            justifyContent: "center",
-            fontSize: "clamp(12px, 2vw, 16px)",
+            gap: "10px",
+            fontSize: "clamp(11px, 1.6vw, 14px)",
+            flexShrink: 0,
             alignItems: "center",
           }}
         >
@@ -118,23 +114,21 @@ export default function Navbar() {
                 color: active === section ? "#FFD700" : "white",
                 textDecoration: "none",
                 fontWeight: 500,
-                transition: "color 0.3s ease",
               }}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
           ))}
-
           <a
             href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
             target="_blank"
             style={{
               backgroundColor: "#FFD700",
               color: "#000",
-              padding: "4px 10px",
-              borderRadius: "5px",
+              padding: "2px 8px",
+              borderRadius: "4px",
               fontWeight: 600,
-              fontSize: "clamp(11px, 1.8vw, 14px)",
+              fontSize: "clamp(10px, 1.5vw, 13px)",
               textDecoration: "none",
               whiteSpace: "nowrap",
             }}
