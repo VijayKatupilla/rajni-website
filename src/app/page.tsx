@@ -1,4 +1,5 @@
 import GoogleReviews from "../components/GoogleReviews";
+import Timings from "../components/Timings";
 import Footer from "../components/Footer";
 
 export default function HomePage() {
@@ -61,6 +62,7 @@ export default function HomePage() {
       {/* ✅ Google Reviews + Footer */}
       
       <GoogleReviews />
+      
     </div>
   );
 }
