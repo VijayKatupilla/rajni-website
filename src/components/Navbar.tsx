@@ -8,7 +8,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "menu", "events", "catering", "gallery", "contact"];
+      const sections = ["home", "menu", "events", "catering", "gallery"];
       const scrollPos = window.scrollY + 120;
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -42,19 +42,19 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "4px 8px",
+          padding: "4px 10px",
           color: "white",
           flexWrap: "nowrap",
-          overflowX: "auto", // ensures no wrap; horizontal scroll if too tight
+          overflowX: "auto",
           whiteSpace: "nowrap",
         }}
       >
-        {/* Left Links */}
+        {/* LEFT LINKS */}
         <div
           style={{
             display: "flex",
-            gap: "10px",
-            fontSize: "clamp(11px, 1.6vw, 14px)",
+            gap: "12px",
+            fontSize: "clamp(12px, 1.7vw, 15px)",
             flexShrink: 0,
           }}
         >
@@ -73,7 +73,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Center Logo */}
+        {/* CENTER LOGO */}
         <div
           style={{
             flexShrink: 0,
@@ -88,7 +88,7 @@ export default function Navbar() {
               src="/logo1.png"
               alt="Rajni Logo"
               style={{
-                width: "clamp(70px, 12vw, 120px)",
+                width: "clamp(75px, 13vw, 120px)",
                 height: "auto",
                 display: "block",
               }}
@@ -96,17 +96,17 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right Links */}
+        {/* RIGHT LINKS */}
         <div
           style={{
             display: "flex",
-            gap: "10px",
-            fontSize: "clamp(11px, 1.6vw, 14px)",
+            gap: "12px",
+            fontSize: "clamp(12px, 1.7vw, 15px)",
             flexShrink: 0,
             alignItems: "center",
           }}
         >
-          {["catering", "gallery", "contact"].map((section) => (
+          {["catering", "gallery"].map((section) => (
             <a
               key={section}
               href={`#${section}`}
@@ -125,10 +125,10 @@ export default function Navbar() {
             style={{
               backgroundColor: "#FFD700",
               color: "#000",
-              padding: "2px 8px",
+              padding: "3px 10px",
               borderRadius: "4px",
               fontWeight: 600,
-              fontSize: "clamp(10px, 1.5vw, 13px)",
+              fontSize: "clamp(11px, 1.5vw, 14px)",
               textDecoration: "none",
               whiteSpace: "nowrap",
             }}
