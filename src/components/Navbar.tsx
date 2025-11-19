@@ -28,61 +28,19 @@ export default function Navbar() {
   return (
     <>
       {/* ✅ DESKTOP NAVBAR */}
-      <nav
-        className="navbar-desktop"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          zIndex: 50,
-          background: "rgba(0, 0, 0, 0.6)",
-          backdropFilter: "blur(10px)",
-          borderBottom: "1px solid rgba(255,255,255,0.15)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "8px 10px",
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        {/* Centered Logo */}
-        <div style={{ marginBottom: "6px" }}>
+      <nav className="navbar-desktop">
+        <div className="desktop-logo">
           <Link href="#home">
-            <img
-              src="/logo1.png"
-              alt="Rajni Logo"
-              style={{
-                width: "clamp(110px, 20vw, 180px)",
-                height: "auto",
-              }}
-            />
+            <img src="/logo1.png" alt="Rajni Logo" className="logo-img" />
           </Link>
         </div>
 
-        {/* Navigation Buttons */}
-        <div
-          className="desktop-links"
-          style={{
-            display: "flex",
-            gap: "18px",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            fontSize: "clamp(12px, 1.6vw, 16px)",
-            paddingBottom: "4px",
-          }}
-        >
+        <div className="desktop-links">
           {links.map((section) => (
             <a
               key={section}
               href={`#${section}`}
-              style={{
-                color: active === section ? "#FFD700" : "white",
-                textDecoration: "none",
-                fontWeight: 500,
-                transition: "color 0.3s ease",
-              }}
+              className={active === section ? "active-link" : ""}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
@@ -90,16 +48,7 @@ export default function Navbar() {
           <a
             href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
             target="_blank"
-            style={{
-              backgroundColor: "#FFD700",
-              color: "#000",
-              padding: "4px 10px",
-              borderRadius: "4px",
-              fontWeight: 600,
-              fontSize: "clamp(11px, 1.5vw, 14px)",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-            }}
+            className="order-btn-desktop"
           >
             Order Online
           </a>
@@ -108,15 +57,11 @@ export default function Navbar() {
 
       {/* ✅ MOBILE TOP BAR */}
       <nav className="navbar-mobile-top">
-        <div className="mobile-top-inner">
+        <div className="mobile-header">
           <Link href="#home">
             <img src="/logo1.png" alt="Rajni Logo" className="mobile-logo" />
           </Link>
-
-          <button
-            className="hamburger-btn"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
+          <button className="hamburger-btn" onClick={() => setMenuOpen(!menuOpen)}>
             ☰
           </button>
         </div>
@@ -125,14 +70,10 @@ export default function Navbar() {
       {/* ✅ MOBILE SIDE MENU */}
       {menuOpen && (
         <div className="mobile-menu">
-          <button
-            className="close-btn"
-            onClick={() => setMenuOpen(false)}
-          >
+          <button className="close-btn" onClick={() => setMenuOpen(false)}>
             ✕
           </button>
-
-          <div className="menu-content">
+          <div className="mobile-menu-links">
             {links.map((section) => (
               <a
                 key={section}
@@ -164,7 +105,7 @@ export default function Navbar() {
         <a
           href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
           target="_blank"
-          className="order-btn"
+          className="bottom-order-btn"
         >
           Order
         </a>
@@ -172,152 +113,190 @@ export default function Navbar() {
 
       {/* ✅ STYLES */}
       <style jsx>{`
-        /* -------- DESKTOP ONLY -------- */
-        @media (min-width: 768px) {
-          .navbar-mobile-top,
-          .navbar-mobile-bottom,
-          .mobile-menu {
-            display: none;
+        /* Base styles */
+        a {
+          text-decoration: none;
+          color: white;
+          font-weight: 500;
+          transition: color 0.3s ease;
+        }
+
+        a:hover {
+          color: #ffd700;
+        }
+
+        /* Desktop navbar */
+        .navbar-desktop {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 50;
+          background: rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 8px 10px;
+          text-align: center;
+        }
+
+        .desktop-logo {
+          margin-bottom: 6px;
+        }
+
+        .logo-img {
+          width: clamp(110px, 20vw, 180px);
+          height: auto;
+        }
+
+        .desktop-links {
+          display: flex;
+          gap: 18px;
+          flex-wrap: wrap;
+          justify-content: center;
+          font-size: clamp(12px, 1.6vw, 16px);
+          padding-bottom: 4px;
+        }
+
+        .order-btn-desktop {
+          background-color: #ffd700;
+          color: #000;
+          padding: 4px 10px;
+          border-radius: 4px;
+          font-weight: 600;
+          font-size: clamp(11px, 1.5vw, 14px);
+        }
+
+        .active-link {
+          color: #ffd700;
+        }
+
+        /* Mobile top navbar */
+        .navbar-mobile-top {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 100;
+          background: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(10px);
+          padding: 8px 14px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+          display: none; /* hidden on desktop */
+        }
+
+        .mobile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .mobile-logo {
+          width: 120px;
+          height: auto;
+        }
+
+        .hamburger-btn {
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 28px;
+          cursor: pointer;
+        }
+
+        /* Mobile side menu */
+        .mobile-menu {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 70%;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.95);
+          color: white;
+          z-index: 200;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          padding: 70px 25px;
+          gap: 16px;
+          animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(0);
           }
         }
 
-        /* -------- MOBILE ONLY -------- */
+        .close-btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: transparent;
+          border: none;
+          color: #ffd700;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .mobile-menu-links {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          gap: 14px;
+        }
+
+        .order-link {
+          color: #ffd700;
+          font-weight: 600;
+          font-size: 18px;
+          text-decoration: underline;
+          margin-top: 10px;
+        }
+
+        /* Mobile bottom bar */
+        .navbar-mobile-bottom {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background: rgba(0, 0, 0, 0.85);
+          backdrop-filter: blur(8px);
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding: 8px 0;
+          z-index: 90;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          display: none; /* hidden on desktop */
+        }
+
+        .bottom-order-btn {
+          background-color: #ffd700;
+          color: #000;
+          padding: 4px 8px;
+          border-radius: 4px;
+          font-weight: 600;
+          font-size: 12px;
+        }
+
+        /* Responsive visibility */
         @media (max-width: 767px) {
           .navbar-desktop {
             display: none;
           }
-
-          /* Top bar */
           .navbar-mobile-top {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 8px 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            display: block;
           }
-
-          .mobile-top-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-
-          .mobile-logo {
-            width: 120px;
-            height: auto;
-          }
-
-          .hamburger-btn {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-          }
-
-          /* Slide-in menu (stacked links, aligned left, top start) */
-          .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 70%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.95);
-            color: white;
-            z-index: 200;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            padding: 70px 25px;
-            gap: 16px;
-            animation: slideIn 0.3s ease forwards;
-          }
-
-          @keyframes slideIn {
-            from {
-              transform: translateX(100%);
-            }
-            to {
-              transform: translateX(0);
-            }
-          }
-
-          .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: transparent;
-            border: none;
-            color: #ffd700;
-            font-size: 24px;
-            cursor: pointer;
-          }
-
-          .menu-content {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-          }
-
-          .menu-content a {
-            color: white;
-            font-size: 18px;
-            text-decoration: none;
-            font-weight: 500;
-          }
-
-          .menu-content a:hover {
-            color: #ffd700;
-          }
-
-          .order-link {
-            color: #ffd700;
-            font-weight: 600;
-            font-size: 18px;
-            text-decoration: underline;
-            margin-top: 10px;
-          }
-
-          /* Bottom fixed navbar */
           .navbar-mobile-bottom {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 8px 0;
-            z-index: 90;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-          }
-
-          .navbar-mobile-bottom a {
-            color: white;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-          }
-
-          .navbar-mobile-bottom a:hover {
-            color: #ffd700;
-          }
-
-          .order-btn {
-            background-color: #ffd700;
-            color: #000;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 12px;
           }
         }
       `}</style>
