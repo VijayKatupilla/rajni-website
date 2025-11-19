@@ -206,11 +206,11 @@ export default function Navbar() {
         .hamburger-btn {
           background: transparent;
           border: 2px solid var(--gold);
-          color: var(--gold);
+          color: white;
           border-radius: 6px;
           font-size: 26px;
           padding: 4px 10px;
-          margin-right: 8px; /* moved slightly inward */
+          margin-right: 12px; /* moved slightly inward */
           cursor: pointer;
         }
 
@@ -262,7 +262,7 @@ export default function Navbar() {
         }
 
         .order-link {
-          color: var(--gold);
+          color: yellow;
           font-weight: 600;
           font-size: 18px;
           text-decoration: underline;
@@ -286,7 +286,7 @@ export default function Navbar() {
         }
 
         .navbar-mobile-bottom a {
-          color: var(--cream);
+          color: white;
           font-size: 13px;
           font-weight: 500;
         }
@@ -297,7 +297,7 @@ export default function Navbar() {
 
         .bottom-order-btn {
           background-color: var(--gold);
-          color: var(--black);
+          color: yellow;
           padding: 4px 8px;
           border-radius: 4px;
           font-weight: 600;
