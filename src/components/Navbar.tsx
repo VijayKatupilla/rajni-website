@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +61,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Navigation Buttons (Below Logo) */}
+        {/* Navigation Buttons */}
         <div
           style={{
             display: "flex",
@@ -104,68 +105,176 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ✅ MOBILE BOTTOM NAVBAR (only visible on mobile) */}
-      <div
-        className="navbar-mobile"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          background: "rgba(175, 120, 9, 0.96)",
-          backdropFilter: "blur(8px)",
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          padding: "8px 0",
-          zIndex: 90,
-          borderTop: "1px solid rgba(255,255,255,0.1)",
-        }}
-      >
-        {links.map((section) => (
-          <a
-            key={section}
-            href={`#${section}`}
-            style={{
-              color: active === section ? "#FFD700" : "white",
-              textDecoration: "none",
-              fontSize: "13px",
-              fontWeight: 500,
-            }}
+      {/* ✅ MOBILE TOP NAVBAR (Logo left + hamburger right) */}
+      <nav className="navbar-mobile-top">
+        <div className="mobile-top-inner">
+          <Link href="#home">
+            <img src="/logo1.png" alt="Rajni Logo" className="mobile-logo" />
+          </Link>
+
+          <button
+            className="hamburger-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
+            ☰
+          </button>
+        </div>
+      </nav>
+
+      {/* ✅ MOBILE SIDE MENU */}
+      {menuOpen && (
+        <div className="mobile-menu">
+          {links.map((section) => (
+            <a
+              key={section}
+              href={`#${section}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          ))}
+          <a
+            href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
+            target="_blank"
+            onClick={() => setMenuOpen(false)}
+            className="order-link"
+          >
+            Order Online →
+          </a>
+        </div>
+      )}
+
+      {/* ✅ MOBILE BOTTOM NAVBAR */}
+      <div className="navbar-mobile-bottom">
+        {links.map((section) => (
+          <a key={section} href={`#${section}`}>
             {section.charAt(0).toUpperCase() + section.slice(1)}
           </a>
         ))}
         <a
           href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
           target="_blank"
-          style={{
-            backgroundColor: "#FFD700",
-            color: "#000",
-            padding: "4px 8px",
-            borderRadius: "4px",
-            fontWeight: 600,
-            fontSize: "12px",
-            textDecoration: "none",
-          }}
+          className="order-btn"
         >
           Order
         </a>
       </div>
 
-      {/* ✅ CSS to hide top navbar on mobile and show bottom nav */}
+      {/* ✅ Scoped CSS */}
       <style jsx>{`
-        /* Hide bottom navbar on desktop */
+        /* -------- DESKTOP ONLY -------- */
         @media (min-width: 768px) {
-          .navbar-mobile {
+          .navbar-mobile-top,
+          .navbar-mobile-bottom,
+          .mobile-menu {
             display: none;
           }
         }
 
-        /* Hide top navbar on mobile */
+        /* -------- MOBILE ONLY -------- */
         @media (max-width: 767px) {
           .navbar-desktop {
             display: none;
+          }
+
+          .navbar-mobile-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 8px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+          }
+
+          .mobile-top-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          .mobile-logo {
+            width: 120px;
+            height: auto;
+          }
+
+          .hamburger-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+          }
+
+          .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 65%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+          }
+
+          .mobile-menu a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: 500;
+          }
+
+          .mobile-menu a:hover {
+            color: #ffd700;
+          }
+
+          .order-link {
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 18px;
+            text-decoration: underline;
+          }
+
+          .navbar-mobile-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0;
+            z-index: 90;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+          }
+
+          .navbar-mobile-bottom a {
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+          }
+
+          .navbar-mobile-bottom a:hover {
+            color: #ffd700;
+          }
+
+          .order-btn {
+            background-color: #ffd700;
+            color: #000;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
           }
         }
       `}</style>
