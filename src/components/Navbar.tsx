@@ -142,7 +142,7 @@ export default function Navbar() {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: rgba(61, 41, 1, 0.97);
+          background: rgba(19, 18, 18, 0.97);
           backdrop-filter: blur(8px);
           border-bottom: 1px solid rgba(255, 0, 0, 0.25);
           display: flex;
