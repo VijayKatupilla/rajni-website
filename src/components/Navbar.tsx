@@ -142,7 +142,7 @@ export default function Navbar() {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: rgba(12, 12, 12, 0.9);
+          background: rgba(15, 11, 3, 0.97);
           backdrop-filter: blur(8px);
           border-bottom: 1px solid rgba(255, 0, 0, 0.25);
           display: flex;
@@ -296,7 +296,7 @@ export default function Navbar() {
         }
 
         .bottom-order-btn {
-          background-color: var(--gold);
+          background-color: yellow;
           color: yellow;
           padding: 4px 8px;
           border-radius: 4px;
