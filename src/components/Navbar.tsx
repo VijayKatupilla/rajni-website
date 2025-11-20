@@ -244,8 +244,8 @@ export default function Navbar() {
 
         .close-btn {
           position: absolute;
-          top: 20px;
-          right: 20px;
+          top: 15px;
+          right: 16px;
           background: transparent;
           border: none;
           color: var(--gold);
@@ -292,7 +292,7 @@ export default function Navbar() {
         }
 
         .navbar-mobile-bottom a:hover {
-          color: var(--gold);
+          color: var(--black);
         }
 
         .bottom-order-btn {
