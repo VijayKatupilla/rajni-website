@@ -74,7 +74,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="mobile-menu">
           <button className="close-btn" onClick={() => setMenuOpen(false)}>
-            ✕
+            ☰
           </button>
           <div className="mobile-menu-links">
             {links.map((section) => (
@@ -249,7 +249,7 @@ export default function Navbar() {
           background: transparent;
           border: none;
           color: var(--gold);
-          font-size: 26px;
+          font-size: 36px;
           cursor: pointer;
         }
 
@@ -297,7 +297,7 @@ export default function Navbar() {
 
         .bottom-order-btn {
           background-color: yellow;
-          color: yellow;
+          color: var(--gold);
           padding: 4px 8px;
           border-radius: 4px;
           font-weight: 600;
