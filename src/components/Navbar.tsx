@@ -245,7 +245,7 @@ export default function Navbar() {
         .close-btn {
           position: absolute;
           top: 15px;
-          right: 10px;
+          right: 7px;
           background: transparent;
           border: none;
           color: var(--gold);
@@ -296,7 +296,7 @@ export default function Navbar() {
         }
 
         .bottom-order-btn {
-          background-color: yellow;
+          background-color: var(--gold);
           color: black;
           padding: 4px 8px;
           border-radius: 4px;
