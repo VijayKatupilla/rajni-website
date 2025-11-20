@@ -142,7 +142,7 @@ export default function Navbar() {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: rgba(15, 11, 3, 0.97);
+          background: rgba(61, 41, 1, 0.97);
           backdrop-filter: blur(8px);
           border-bottom: 1px solid rgba(255, 0, 0, 0.25);
           display: flex;
@@ -208,9 +208,9 @@ export default function Navbar() {
           border: 2px solid var(--gold);
           color: white;
           border-radius: 6px;
-          font-size: 26px;
+          font-size: 36px;
           padding: 4px 10px;
-          margin-right: 12px; /* moved slightly inward */
+          margin-right: 24px; /* moved slightly inward */
           cursor: pointer;
         }
 
