@@ -91,6 +91,16 @@ const galleryImages = [
   { src: "/images/gallery-9.svg", alt: "Rajni dining booths at night" },
 ];
 
+const sectionBackgrounds = {
+  experience: "/images/gallery-1.svg",
+  events: "/images/gallery-5.svg",
+  specials: "/images/gallery-6.svg",
+  catering: "/images/gallery-8.svg",
+  reserve: "/images/gallery-9.svg",
+  contact: "/images/gallery-4.svg",
+  gallery: "/images/gallery-3.svg",
+};
+
 export default function HomePage() {
   const [selectedLocation, setSelectedLocation] = useState(0);
   const [isReserveOpen, setIsReserveOpen] = useState(false);
@@ -144,145 +154,187 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="experience" className="panel">
-        <div className="section-header">
-          <p className="eyebrow">Experience</p>
-          <h2>Designed for gatherings</h2>
-          <p className="lede narrow">
-            House curries, tandoor platters, and playlists tuned to feel like Longtable—Rajni wraps your night in warm
-            hospitality.
-          </p>
-        </div>
-        <div className="card-grid">
-          {experience.map((item) => (
-            <div key={item.title} className="card focus">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="events" className="panel alt">
-        <div className="section-header">
-          <p className="eyebrow">Events</p>
-          <h2>Happenings & gatherings</h2>
-          <p className="lede narrow">
-            From chef tables to corporate dinners, Rajni layers every detail—lighting, spices, and music—for nights that
-            linger.
-          </p>
-        </div>
-        <div className="card-grid thirds">
-          {happenings.map((item) => (
-            <div key={item.title} className="card">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="specials" className="panel">
-        <div className="section-header">
-          <p className="eyebrow">Weekend Specials</p>
-          <h2>Seasonal plates inspired by the reference vibe</h2>
-          <p className="lede narrow">
-            Every weekend features a new spotlight—perfect for repeat visits and Longtable-style celebrations.
-          </p>
-        </div>
-        <div className="card-grid">
-          {specials.map((item) => (
-            <div key={item.title} className="card">
-              <div className="pill-row">
-                <span className="pill alt">{item.tag}</span>
+      <section
+        id="experience"
+        className="panel with-bg"
+        style={{ ["--panel-bg" as string]: `url(${sectionBackgrounds.experience})` }}
+      >
+        <div className="panel__content">
+          <div className="section-header">
+            <p className="eyebrow">Experience</p>
+            <h2>Designed for gatherings</h2>
+            <p className="lede narrow">
+              House curries, tandoor platters, and playlists tuned to feel like Longtable—Rajni wraps your night in
+              warm hospitality.
+            </p>
+          </div>
+          <div className="card-grid">
+            {experience.map((item) => (
+              <div key={item.title} className="card focus">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
               </div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      <section id="catering" className="panel alt split">
-        <div className="split__content">
-          <p className="eyebrow">Catering & Events</p>
-          <h2>Bring Rajni to your venue</h2>
-          <p className="lede">
-            Weddings, corporate lunches, graduations—we design custom menus and can deliver, set up, or host.
-          </p>
-          <div className="list">
-            <span>Full-service catering with staffing</span>
-            <span>Buffet or plated service available</span>
-            <span>Pairings menu for wine, beer, and mocktails</span>
+      <section
+        id="events"
+        className="panel alt with-bg"
+        style={{ ["--panel-bg" as string]: `url(${sectionBackgrounds.events})` }}
+      >
+        <div className="panel__content">
+          <div className="section-header">
+            <p className="eyebrow">Events</p>
+            <h2>Happenings & gatherings</h2>
+            <p className="lede narrow">
+              From chef tables to corporate dinners, Rajni layers every detail—lighting, spices, and music—for nights
+              that linger.
+            </p>
           </div>
-          <a className="btn primary" href="#contact">
-            Talk with our team
-          </a>
+          <div className="card-grid thirds">
+            {happenings.map((item) => (
+              <div key={item.title} className="card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="split__media">
-          <div className="media-card">
-            <p className="eyebrow">Reservation Hours</p>
-            <h3>Lunch & Dinner</h3>
-            <ul>
-              <li>Mon–Thu: 11:00 AM – 2:30 PM / 5:00 PM – 9:00 PM</li>
-              <li>Fri–Sat: 11:00 AM – 2:30 PM / 5:00 PM – 10:00 PM</li>
-              <li>Sun: 11:00 AM – 2:30 PM / 5:00 PM – 9:00 PM</li>
-            </ul>
+      </section>
+
+      <section
+        id="specials"
+        className="panel with-bg"
+        style={{ ["--panel-bg" as string]: `url(${sectionBackgrounds.specials})` }}
+      >
+        <div className="panel__content">
+          <div className="section-header">
+            <p className="eyebrow">Weekend Specials</p>
+            <h2>Seasonal plates inspired by the reference vibe</h2>
+            <p className="lede narrow">
+              Every weekend features a new spotlight—perfect for repeat visits and Longtable-style celebrations.
+            </p>
+          </div>
+          <div className="card-grid">
+            {specials.map((item) => (
+              <div key={item.title} className="card">
+                <div className="pill-row">
+                  <span className="pill alt">{item.tag}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="catering"
+        className="panel alt split with-bg"
+        style={{ ["--panel-bg" as string]: `url(${sectionBackgrounds.catering})` }}
+      >
+        <div className="panel__content split">
+          <div className="split__content">
+            <p className="eyebrow">Catering & Events</p>
+            <h2>Bring Rajni to your venue</h2>
+            <p className="lede">
+              Weddings, corporate lunches, graduations—we design custom menus and can deliver, set up, or host.
+            </p>
+            <div className="list">
+              <span>Full-service catering with staffing</span>
+              <span>Buffet or plated service available</span>
+              <span>Pairings menu for wine, beer, and mocktails</span>
+            </div>
+            <a className="btn primary" href="#contact">
+              Talk with our team
+            </a>
+          </div>
+          <div className="split__media">
+            <div className="media-card">
+              <p className="eyebrow">Reservation Hours</p>
+              <h3>Lunch & Dinner</h3>
+              <ul>
+                <li>Mon–Thu: 11:00 AM – 2:30 PM / 5:00 PM – 9:00 PM</li>
+                <li>Fri–Sat: 11:00 AM – 2:30 PM / 5:00 PM – 10:00 PM</li>
+                <li>Sun: 11:00 AM – 2:30 PM / 5:00 PM – 9:00 PM</li>
+              </ul>
+              <div className="pill-row">
+                <span className="pill">Dine-in</span>
+                <span className="pill">Takeout</span>
+                <span className="pill">Catering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="reserve"
+        className="panel with-bg"
+        style={{ ["--panel-bg" as string]: `url(${sectionBackgrounds.reserve})` }}
+      >
+        <div className="panel__content">
+          <div className="card focus">
+            <h3>Reserve a table</h3>
+            <p className="muted">Share when you’re visiting, and we’ll hold your seats with Longtable-level care.</p>
             <div className="pill-row">
-              <span className="pill">Dine-in</span>
-              <span className="pill">Takeout</span>
-              <span className="pill">Catering</span>
+              <span className="pill alt">Lunch & Dinner</span>
+              <span className="pill">Groups up to 20</span>
             </div>
+            <button className="btn primary" onClick={() => setIsReserveOpen(true)}>
+              Open reservation form
+            </button>
           </div>
         </div>
       </section>
 
-      <section id="reserve" className="panel">
-        <div className="card focus">
-          <h3>Reserve a table</h3>
-          <p className="muted">Share when you’re visiting, and we’ll hold your seats with Longtable-level care.</p>
-          <div className="pill-row">
-            <span className="pill alt">Lunch & Dinner</span>
-            <span className="pill">Groups up to 20</span>
+      <section
+        id="contact"
+        className="panel alt with-bg"
+        style={{ ["--panel-bg" as string]: `url(${sectionBackgrounds.contact})` }}
+      >
+        <div className="panel__content">
+          <div className="section-header">
+            <p className="eyebrow">Catering Inquiry</p>
+            <h2>Plan your event with Rajni</h2>
+            <p className="lede narrow">Tell us about your celebration, and we’ll design a menu and experience.</p>
           </div>
-          <button className="btn primary" onClick={() => setIsReserveOpen(true)}>
-            Open reservation form
-          </button>
-        </div>
-      </section>
-
-      <section id="contact" className="panel alt">
-        <div className="section-header">
-          <p className="eyebrow">Catering Inquiry</p>
-          <h2>Plan your event with Rajni</h2>
-          <p className="lede narrow">Tell us about your celebration, and we’ll design a menu and experience.</p>
-        </div>
-        <div className="card">
-          <h3>Request catering</h3>
-          <p className="muted">Dedicated tastings, custom menus, and staffing that travels to your venue.</p>
-          <div className="pill-row">
-            <span className="pill">Staffed service</span>
-            <span className="pill alt">Buffet or plated</span>
-          </div>
-          <button className="btn secondary" onClick={() => setIsCateringOpen(true)}>
-            Open catering form
-          </button>
-        </div>
-      </section>
-
-      <section id="gallery" className="panel">
-        <div className="section-header">
-          <p className="eyebrow">Gallery</p>
-          <h2>Inside Rajni</h2>
-          <p className="lede narrow">A peek into the red booths, mural art, fruit carving, and nighttime glow.</p>
-        </div>
-        <div className="gallery-grid">
-          {galleryImages.map((image) => (
-            <div key={image.src} className="gallery-card">
-              <Image src={image.src} alt={image.alt} width={520} height={360} />
-              <span className="muted">{image.alt}</span>
+          <div className="card">
+            <h3>Request catering</h3>
+            <p className="muted">Dedicated tastings, custom menus, and staffing that travels to your venue.</p>
+            <div className="pill-row">
+              <span className="pill">Staffed service</span>
+              <span className="pill alt">Buffet or plated</span>
             </div>
-          ))}
+            <button className="btn secondary" onClick={() => setIsCateringOpen(true)}>
+              Open catering form
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="gallery"
+        className="panel with-bg"
+        style={{ ["--panel-bg" as string]: `url(${sectionBackgrounds.gallery})` }}
+      >
+        <div className="panel__content">
+          <div className="section-header">
+            <p className="eyebrow">Gallery</p>
+            <h2>Inside Rajni</h2>
+            <p className="lede narrow">A peek into the red booths, mural art, fruit carving, and nighttime glow.</p>
+          </div>
+          <div className="gallery-grid">
+            {galleryImages.map((image) => (
+              <div key={image.src} className="gallery-card">
+                <Image src={image.src} alt={image.alt} width={520} height={360} />
+                <span className="muted">{image.alt}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -525,17 +577,62 @@ export default function HomePage() {
         }
 
         .panel {
-          padding: 0 24px;
           display: flex;
           flex-direction: column;
           gap: 30px;
         }
 
-        .panel.alt {
-          background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.9));
+        .with-bg {
+          position: relative;
+          isolation: isolate;
+          overflow: hidden;
+        }
+
+        .with-bg::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.85)), var(--panel-bg);
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+          z-index: -2;
+        }
+
+        .with-bg::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: rgba(255, 255, 255, 0.64);
+          backdrop-filter: blur(10px);
+          z-index: -1;
+        }
+
+        .panel__content {
+          position: relative;
           padding: 60px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .with-bg .panel__content {
+          background: rgba(255, 255, 255, 0.82);
+          border-radius: 24px;
+          border: 1px solid var(--border);
+          box-shadow: 0 18px 36px rgba(0, 0, 0, 0.06);
+        }
+
+        .panel.alt {
           border-block: 1px solid var(--border);
-          backdrop-filter: blur(8px);
+          background: none;
+        }
+
+        .panel.alt .panel__content {
+          background: rgba(255, 255, 255, 0.86);
+          border-radius: 24px;
+          border: 1px solid var(--border);
+          box-shadow: 0 18px 36px rgba(0, 0, 0, 0.07);
         }
 
         .section-header {
@@ -814,6 +911,14 @@ export default function HomePage() {
 
           .hero {
             min-height: 70vh;
+          }
+
+          .with-bg::before {
+            background-attachment: scroll;
+          }
+
+          .panel__content {
+            padding: 46px 18px;
           }
 
           .panel,
