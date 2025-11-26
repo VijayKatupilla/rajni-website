@@ -1,0 +1,36 @@
+:root {
+  --bg: #f7f1e6;
+  --panel: rgba(255, 255, 255, 0.74);
+  --gold: #d2a04b;
+  --cream: #2d2216;
+  --text: #2c1f12;
+  --muted: #5b4833;
+  --accent: #b54f2c;
+  --border: rgba(56, 36, 18, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+main {
+  background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.78), transparent 30%),
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.82), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.95) 55%, #fff 100%);
+}
