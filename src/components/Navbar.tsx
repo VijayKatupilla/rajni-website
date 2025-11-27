@@ -1,7 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const sections = ["home", "experience", "events", "specials", "catering", "reserve", "contact"];
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
@@ -9,8 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "menu", "events", "catering", "gallery"];
-      const scrollPos = window.scrollY + 120;
+      const scrollPos = window.scrollY + 140;
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section && section.offsetTop <= scrollPos) {
@@ -19,312 +21,247 @@ export default function Navbar() {
         }
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const links = ["home", "menu", "events", "catering", "gallery"];
-
   return (
     <>
-      {/* ===== DESKTOP NAVBAR ===== */}
-      <nav className="navbar-desktop">
-        <div className="desktop-logo">
+      <nav className="navbar">
+        <div className="navbar__logo">
           <Link href="#home">
-            <img src="/logo1.png" alt="Rajni Logo" className="logo-img" />
+            <Image src="/images/logo1.png" alt="Rajni Logo" width={180} height={64} priority />
           </Link>
         </div>
 
-        <div className="desktop-links">
-          {links.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              className={active === section ? "active-link" : ""}
-            >
+        <div className="navbar__links">
+          {sections.map((section) => (
+            <a key={section} href={`#${section}`} className={active === section ? "active" : ""}>
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
           ))}
+        </div>
+
+        <div className="navbar__actions">
+          <a className="ghost" href="#reserve" aria-label="Reserve a table">
+            Reserve
+          </a>
           <a
+            className="solid"
             href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
             target="_blank"
-            className="order-btn-desktop"
+            rel="noreferrer"
           >
             Order Online
           </a>
         </div>
+
+        <button className="navbar__mobile-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          ☰
+        </button>
       </nav>
 
-      {/* ===== MOBILE TOP BAR ===== */}
-      <nav className="navbar-mobile-top">
-        <div className="mobile-header">
-          <Link href="#home">
-            <img src="/logo1.png" alt="Rajni Logo" className="mobile-logo" />
-          </Link>
-          <button
-            className="hamburger-btn"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            ☰
+      {menuOpen && <div className="backdrop" onClick={() => setMenuOpen(false)} />}
+
+      <div className={`mobile-drawer ${menuOpen ? "open" : ""}`}>
+        <div className="drawer-header">
+          <Image src="/images/logo1.png" alt="Rajni Logo" width={160} height={60} />
+          <button onClick={() => setMenuOpen(false)} aria-label="Close menu">
+            ×
           </button>
         </div>
-      </nav>
-
-      {/* ===== MOBILE SIDE MENU ===== */}
-      {menuOpen && (
-        <div className="mobile-menu">
-          <button className="close-btn" onClick={() => setMenuOpen(false)}>
-            ☰
-          </button>
-          <div className="mobile-menu-links">
-            {links.map((section) => (
-              <a
-                key={section}
-                href={`#${section}`}
-                onClick={() => setMenuOpen(false)}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </a>
-            ))}
-            <a
-              href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
-              target="_blank"
-              onClick={() => setMenuOpen(false)}
-              className="order-link"
-            >
-              Order Online →
+        <div className="drawer-links">
+          {sections.map((section) => (
+            <a key={section} href={`#${section}`} onClick={() => setMenuOpen(false)}>
+              {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
-          </div>
+          ))}
         </div>
-      )}
-
-      {/* ===== MOBILE BOTTOM NAVBAR ===== */}
-      <div className="navbar-mobile-bottom">
-        {links.map((section) => (
-          <a key={section} href={`#${section}`}>
-            {section.charAt(0).toUpperCase() + section.slice(1)}
+        <div className="drawer-actions">
+          <a className="ghost" href="#reserve" onClick={() => setMenuOpen(false)}>
+            Reserve
           </a>
-        ))}
-        <a
-          href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
-          target="_blank"
-          className="bottom-order-btn"
-        >
-          Order
-        </a>
+          <a
+            className="solid"
+            href="https://order.toasttab.com/online/rajni-madison-429-commerce-drive"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setMenuOpen(false)}
+          >
+            Order Online
+          </a>
+        </div>
       </div>
 
-      {/* ===== THEME STYLES ===== */}
       <style jsx>{`
-        :root {
-          --gold: #ffd700;
-          --maroon: #800000;
-          --black: #0c0c0c;
-          --cream: #f5f0e1;
-          --gray: #c5bfbf;
-        }
-
-        a {
-          text-decoration: none;
-          color: white;
-          font-weight: 500;
-          transition: color 0.3s ease;
-        }
-
-        a:hover {
-          color: var(--gold);
-        }
-
-        /* Desktop navbar */
-        .navbar-desktop {
+        .navbar {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
-          z-index: 50;
-          background: rgba(21, 20, 20, 0.97);
-          backdrop-filter: blur(8px);
-          border-bottom: 1px solid rgba(239, 222, 222, 0.25);
-          display: flex;
-          flex-direction: column;
+          z-index: 80;
+          display: grid;
+          grid-template-columns: 1fr 2fr 1fr;
           align-items: center;
-          padding: 10px 10px;
-          text-align: center;
+          gap: 18px;
+          padding: 14px 32px;
+          background: rgba(255, 255, 255, 0.82);
+          backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--border);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
         }
 
-        .logo-img {
-          width: clamp(110px, 20vw, 180px);
+        .navbar__logo :global(img) {
+          width: clamp(120px, 12vw, 180px);
           height: auto;
         }
 
-        .desktop-links {
+        .navbar__links {
           display: flex;
-          gap: 20px;
-          flex-wrap: wrap;
           justify-content: center;
-          font-size: clamp(12px, 1.6vw, 16px);
-          padding-bottom: 4px;
+          gap: 20px;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          font-size: clamp(12px, 1.1vw, 14px);
         }
 
-        .order-btn-desktop {
-          background-color: yellow;
-          color: var(--gold);
-          padding: 4px 10px;
-          border-radius: 4px;
-          font-weight: 600;
+        .navbar__links a {
+          color: var(--muted);
+          padding-bottom: 6px;
+          border-bottom: 2px solid transparent;
+          transition: color 0.2s ease, border-color 0.2s ease;
         }
 
-        .active-link {
-          color: white;
+        .navbar__links a:hover,
+        .navbar__links a.active {
+          color: var(--text);
+          border-color: var(--gold);
         }
 
-        /* Mobile top navbar */
-        .navbar-mobile-top {
+        .navbar__actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 10px;
+        }
+
+        .navbar__actions a,
+        .drawer-actions a {
+          padding: 10px 14px;
+          border-radius: 999px;
+          font-weight: 700;
+          text-decoration: none;
+          text-align: center;
+          font-size: 14px;
+          letter-spacing: 0.01em;
+        }
+
+        .ghost {
+          border: 1px solid var(--border);
+          color: var(--text);
+          background: rgba(255, 255, 255, 0.6);
+        }
+
+        .solid {
+          background: linear-gradient(135deg, #f6c979, #f0a437);
+          color: #3b2109;
+          border: none;
+        }
+
+        .navbar__mobile-toggle {
+          display: none;
+          background: transparent;
+          border: 1px solid var(--border);
+          color: var(--text);
+          font-size: 28px;
+          padding: 6px 12px;
+          border-radius: 10px;
+        }
+
+        .backdrop {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.35);
+          z-index: 90;
+        }
+
+        .mobile-drawer {
           position: fixed;
           top: 0;
-          left: 0;
-          width: 100%;
-          z-index: 100;
-          background: var(--black);
-          backdrop-filter: blur(10px);
-          padding: 10px 20px;
-          border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-          display: none; /* hidden on desktop */
-        }
-
-        .mobile-header {
+          right: -100%;
+          height: 100vh;
+          width: min(320px, 80%);
+          background: #fff8ee;
+          z-index: 120;
+          padding: 24px 22px;
           display: flex;
-          justify-content: space-between;
-          align-items: center;
+          flex-direction: column;
+          gap: 18px;
+          transition: right 0.3s ease;
+          border-left: 1px solid var(--border);
+          box-shadow: -12px 0 30px rgba(0, 0, 0, 0.08);
         }
 
-        .mobile-logo {
-          width: 130px;
+        .mobile-drawer.open {
+          right: 0;
+        }
+
+        .drawer-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+        }
+
+        .drawer-header :global(img) {
+          width: 150px;
           height: auto;
         }
 
-        .hamburger-btn {
-          background: transparent;
-          border: 2px solid var(--gold);
-          color: white;
-          border-radius: 6px;
-          font-size: 36px;
-          padding: 4px 10px;
-          margin-right: 24px; /* moved slightly inward */
-          cursor: pointer;
-        }
-
-        /* Mobile side menu */
-        .mobile-menu {
-          position: fixed;
-          top: 0;
-          right: 0;
-          width: 70%;
-          height: 100vh;
-          background: var(--maroon);
-          color: white;
-          z-index: 200;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: flex-start;
-          padding: 80px 30px;
-          gap: 20px;
-          animation: slideIn 0.3s ease forwards;
-        }
-
-        @keyframes slideIn {
-          from {
-            transform: translateX(100%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
-
-        .close-btn {
-          position: absolute;
-          top: 15px;
-          right: 9px;
+        .drawer-header button {
           background: transparent;
           border: none;
-          color: var(--gold);
-          font-size: 36px;
-          cursor: pointer;
+          color: var(--text);
+          font-size: 32px;
         }
 
-        .mobile-menu-links {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          width: 100%;
-          gap: 18px;
+        .drawer-links {
+          display: grid;
+          gap: 12px;
+          margin-top: 6px;
         }
 
-        .order-link {
-          color: yellow;
+        .drawer-links a {
+          color: var(--muted);
           font-weight: 600;
-          font-size: 18px;
-          text-decoration: underline;
-          margin-top: 10px;
+          letter-spacing: 0.04em;
+          text-decoration: none;
         }
 
-       /* Mobile bottom navbar */
-.navbar-mobile-bottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--black);
-  backdrop-filter: blur(8px);
-  display: none;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 0;
-  z-index: 90;
-  border-top: 1px solid rgba(255, 215, 0, 0.25);
-}
+        .drawer-links a:hover {
+          color: var(--text);
+        }
 
-/* Regular nav links */
-.navbar-mobile-bottom a {
-  color: white;
-  font-size: 15px;          /* slightly larger */
-  font-weight: 600;         /* bolder for visibility */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
+        .drawer-actions {
+          margin-top: auto;
+          display: grid;
+          gap: 10px;
+        }
 
-.navbar-mobile-bottom a:hover {
-  color: var(--gold);
-}
+        @media (max-width: 980px) {
+          .navbar {
+            grid-template-columns: 1fr auto;
+            align-items: center;
+          }
 
-/* Special Order Online button */
-.bottom-order-btn {
-  background-color: var(--gold);
-  color: black;
-  padding: 6px 10px;
-  border-radius: 5px;
-  font-weight: 700;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.bottom-order-btn:hover {
-  background-color: #e6c300; /* slightly darker gold on hover */
-  color: black;
-}
-
-        /* Responsive visibility */
-        @media (max-width: 767px) {
-          .navbar-desktop {
+          .navbar__links,
+          .navbar__actions {
             display: none;
           }
-          .navbar-mobile-top {
+
+          .navbar__mobile-toggle {
             display: block;
-          }
-          .navbar-mobile-bottom {
-            display: flex;
+            justify-self: end;
           }
         }
       `}</style>
